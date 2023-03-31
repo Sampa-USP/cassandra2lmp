@@ -1,3 +1,10 @@
+"""
+Este código em Python tem como objetivo renomear os átomos de Oxigênio ligados a Hidrogênio em uma molécula. 
+Ele faz uso da biblioteca Open Babel para ler o arquivo PDB contendo a estrutura da molécula e identificar os átomos que precisam ser renomeados. 
+O usuário pode escolher entre renomear o rótulo do átomo ou o nome completo do átomo. O código também pode detectar átomos de Oxigênio ionizados na superfície do poro e renomeá-los de acordo.
+A função retorna a carga final da molécula após a renomeação dos átomos de Oxigênio. O código é útil para a análise de porosidade em materiais e para a simulação de sistemas químicos.
+"""
+
 import os
 import numpy as np
 from openbabel import openbabel

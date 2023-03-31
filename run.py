@@ -9,8 +9,8 @@ import os
 import shutil 
 
 c_files = glob.glob("./*.*")
-#paths = glob.glob("../cristobalite/*/gcmc_run*.xyz")
-paths = glob.glob("../../GCMC/cristobalite/*/gcmc_run*.xyz")
+paths = glob.glob("../cristobalite/*/gcmc_run*.xyz")
+#paths = glob.glob("../../GCMC/cristobalite/*/gcmc_run*.xyz")
 
 
 sio2_pdb_out = "sio2.pdb"
@@ -48,16 +48,14 @@ for gcmc_path in paths :
 
     for indice,atom in enumerate(last_frame):
         _symbol = atom.symbol
-        lista[count] = _symbol
-        
-        count +=1
-        count = count % 6
-        
-        if lista == ['O','H','H','O','H','H']:
-            break
+        lista.append(_symbol)
 
-    sio2 = last_frame[:indice - 2]
-    h2o = last_frame[indice - 2:]
+        lista = lista[-4:]
+        
+        if lista == ['O','H','H','O']:
+            break
+    sio2 = last_frame[:indice - 3]
+    h2o = last_frame[indice - 3:]
 
     h2o.write(h2o_pdb_out)
     sio2.write(sio2_pdb_out)
@@ -85,8 +83,14 @@ for gcmc_path in paths :
     shutil.copy("sio2.lmp",end_path)
     shutil.copy("h2o.lmp",end_path)
 
+    break
+
+
+
+"""
 for file in glob.glob("./*.*"):
     if file in c_files:
         continue
     else:
         os.remove(file)
+"""
